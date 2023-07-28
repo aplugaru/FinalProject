@@ -37,9 +37,9 @@ public class StepDefinitions {
         driver.get ( "file:///C:/Users/andre/Desktop/AZIMUT/Testing-Env-master/routes/enrollment.html" );
     }
 
-    @Given ("I am on the contact information page")
+    @Given("I am on the contact information page")
     public void i_am_on_the_contact_information_page() {
-        driver.get ( "file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa9528.19942/Testing-Env-master/routes/enrollment.html" );
+        driver.get ( "file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15168.31249/Testing-Env-master/routes/enrollment.html" );
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation ();
     }
 
@@ -106,14 +106,29 @@ public class StepDefinitions {
         signUpPageForTheSoftwareTestingCoursePage.inputValueInConfirmPasswordField ( string );
     }
 
-    @And ("the phone number of {string} is inputted")
+    @And("the phone number of {string} is inputted")
     public void input_phone_number_to_field(String string) {
-        contactInformation.inputValueInPhoneNumberFieldOnContactInformationPage(string);
+        contactInformation.inputValueInPhoneNumberFieldOnContactInformationPage ( string );
     }
 
-    @And ("the country value of {string} is inputted")
+    @And("the country value of {string} is inputted")
     public void input_country_to_field(String string) {
-        contactInformation.inputValueInCountryFieldInContactInformationPage(string);
+        contactInformation.inputValueInCountryFieldInContactInformationPage ( string );
+    }
+
+    @And("the city value of {string} is inputted")
+    public void input_city_to_field(String string) {
+        contactInformation.inputValueInCityFieldInContactInformationPage ( string );
+    }
+
+    @And("the postal code value of {string} is inputted")
+    public void input_postal_code_to_field(String string) {
+        contactInformation.inputValueInPostCodeFieldInInformationPage ( string );
+    }
+
+    @And("the next button on contact information page is clicked")
+    public void click_on_next_button_on_contact_information_page() {
+        contactInformation.clickOnNextButtonOnContactInformationPage();
     }
 }
 

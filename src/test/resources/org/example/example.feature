@@ -42,6 +42,9 @@ Feature: An example
    When the email value on contact information page of "alex@gild.com" is inputted
    And the phone number of "08563839470" is inputted
    * the country value of "China" is inputted
+   * the city value of "Pong" is inputted
+   * the postal code value of "364780" is inputted
+   * the next button on contact information page is clicked
 
 
 

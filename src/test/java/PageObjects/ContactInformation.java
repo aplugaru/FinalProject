@@ -18,6 +18,15 @@ public class ContactInformation {
     @FindBy (xpath = "//*[@id=\"country\"]")
     private WebElement inputCountryFieldOnContactInformationPage;
 
+    @FindBy (xpath = "//*[@id=\"city\"]")
+    private WebElement inputCityFieldOnContactInformationPage;
+
+    @FindBy (xpath = "//*[@id=\"postCode\"]")
+    private WebElement inputPostCodeFieldOnContactInformationPage;
+
+    @FindBy (xpath = "/html/body/div/div/section/div/form/div[2]/button[2]")
+    private WebElement clickOnNextButtonOnContactInformationPage;
+
 
     public ContactInformation(WebDriver driver) {
         PageFactory.initElements (driver, this);
@@ -35,6 +44,18 @@ public class ContactInformation {
 
     public void inputValueInCountryFieldInContactInformationPage(String string) {
         inputCountryFieldOnContactInformationPage.sendKeys(string);
+    }
+
+    public void inputValueInCityFieldInContactInformationPage(String string) {
+        inputCityFieldOnContactInformationPage.sendKeys (string);
+    }
+
+    public void inputValueInPostCodeFieldInInformationPage(String string) {
+        inputPostCodeFieldOnContactInformationPage.sendKeys(string);
+    }
+
+    public void clickOnNextButtonOnContactInformationPage() {
+        clickOnNextButtonOnContactInformationPage.click ();
     }
 
 }

@@ -4,23 +4,29 @@ Feature: An example
     Given I am on the main page
     When the email value of "tester@tester.com" is inputted
     And the submit button is clicked
+    Then the newsletter confirmation pop-up appears
 
   Scenario: Valid email RO
     Given I am on the main page
     When the email value of "kljjlkdjf@jkhdj.com" is inputted
     And the submit button is clicked
+    Then the newsletter confirmation pop-up appears
 
   Scenario: Click on Fundamentals Read More button
     Given I am on the main page
     When the learn the fundamentals read more button is clicked
+    Then the page "Fundamentals" opens
 
   Scenario: Click on What You'll Learn Button
     Given I am on the main page
     When the what you'll learn button is clicked
+    Then the button scrolls down to "Fundamentals Page section" section
 
   Scenario: Click on Enrollment Button
     Given I am on the main page
     When the Start Enrollment Button is clicked
+    Then the second page "Software Testing|Enrollment" opens
+
 
   Scenario: (Negative) Sign Up
     Given I am on the Sign Up page
@@ -46,6 +52,14 @@ Feature: An example
    * the postal code value of "364780" is inputted
    * the next button on contact information page is clicked
 
+Scenario: Course Options
+  Given I am on the course options page
+  When the button for Software Testing-Manual tester certificate is clicked
+  And the next button on Course Option page is clicked
+  Then the third page "Payment Information" opens
+
+ Scenario: Payment Information
+   Given I am on the payment information page
 
 
 

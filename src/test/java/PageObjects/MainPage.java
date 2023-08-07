@@ -24,6 +24,9 @@ public class MainPage {
     @FindBy (xpath = "/html/body/section[3]/div/div/div[1]/div/div/a")
     private WebElement elementVirtualHeader;
 
+    @FindBy(xpath = "//*[@id=\"learn-fundamentals\"]/div/div/div[2]/h2")
+    private WebElement fundamentalsText;
+
 
 
     public MainPage(WebDriver driver) {
@@ -52,6 +55,10 @@ public class MainPage {
 
     public WebElement getElementVirtualHeader() {
         return elementVirtualHeader;
+    }
+
+    public String getFundamentalsText() {
+         return fundamentalsText.getText ();
     }
 
 }

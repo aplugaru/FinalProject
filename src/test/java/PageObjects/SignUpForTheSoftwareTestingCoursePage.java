@@ -61,11 +61,11 @@ public class SignUpForTheSoftwareTestingCoursePage {
     }
 
     public void fillInPersonalInformation () {
-        inputValueInFirstNameField ("dgddfg");
-        inputValueInLastNameField ("jhgshj");
-        inputValueInUsernameField ("jhghjg");
-        inputValueInPasswordField ("abc");
-        inputValueInConfirmPasswordField ("abc");
-        clickNextOnSignUpPage ();
+        inputValueInFirstNameField("dgddfg");
+        inputValueInLastNameField("jhgshj");
+        inputValueInUsernameField("jhghjg");
+        inputValueInPasswordField("abc");
+        inputValueInConfirmPasswordField("abc");
+        clickNextOnSignUpPage();
     }
 }

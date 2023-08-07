@@ -7,8 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ContactInformation {
 
-
-
     @FindBy (xpath = "//*[@id=\"email\"]")
     private WebElement inputEmailFieldOnContactInformationPage;
 
@@ -56,6 +54,15 @@ public class ContactInformation {
 
     public void clickOnNextButtonOnContactInformationPage() {
         clickOnNextButtonOnContactInformationPage.click ();
+    }
+
+    public void fillInContactInformation() {
+        inputValueInEmailFieldOnContactInformationPage("afag@hfta.com");
+        inputValueInPhoneNumberFieldOnContactInformationPage("0765746387");
+        inputValueInCountryFieldInContactInformationPage ("China");
+        inputValueInPostCodeFieldInInformationPage ("50098473");
+        inputValueInCityFieldInContactInformationPage ("Shang");
+        clickOnNextButtonOnContactInformationPage();
     }
 
 }

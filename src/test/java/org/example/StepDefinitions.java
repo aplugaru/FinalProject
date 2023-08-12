@@ -42,19 +42,19 @@ public class StepDefinitions {
 
     @Given("I am on the contact information page")
     public void i_am_on_the_contact_information_page() {
-        driver.get ( "file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15168.31249/Testing-Env-master/routes/enrollment.html");
+        driver.get ( "file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa20640.18222/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation();
     }
     @Given("I am on the course options page")
     public void i_am_on_the_course_options_page() {
-        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa5720.25837/Testing-Env-master/routes/enrollment.html");
+        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa20640.18222/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation ();
         contactInformation.fillInContactInformation();
     }
 
     @Given ("I am on the payment information page")
     public void i_am_on_the_payment_information_page() {
-        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa5720.25837/Testing-Env-master/routes/enrollment.html");
+        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa18704.30030/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation();
         contactInformation.fillInContactInformation();
         courseOptions.selectCourseOptions();
@@ -100,6 +100,11 @@ public class StepDefinitions {
     @When ("the button for Software Testing-Manual tester certificate is clicked")
     public void click_on_button_software_testing_manual_tester_certificate() {
         courseOptions.clickButtonSoftwareTestingManualTesterCertificate();
+    }
+
+    @When ("the card holder name of {string} is inputted")
+    public void input_card_holder_name_to_field(String string) {
+        paymentInformation.inputValueInCardHolderName (string);
     }
 
     @And("the last name value of {string} is inputted")
@@ -158,30 +163,63 @@ public class StepDefinitions {
         courseOptions.clickNextOnCourseOptionsButton();
     }
 
+    @And ("the card number of {string} is inputted")
+    public void input_value_in_card_number_field(String string) {
+        paymentInformation.inputValueInCardNumberField(string);
+    }
+
+    @And ("the cvc value of {string} is inputted")
+    public void input_value_in_cvc_field(String string) {
+        paymentInformation.inputValueInCvcField (string);
+    }
+
+    @And ("the month on expiry date section is clicked")
+    public void click_on_month_on_expiry_date_section(){
+        paymentInformation.clickMonthOnExpiryDate();
+    }
+
+    @And ("the year on expiry date section is clicked")
+    public void click_on_year_on_expiry_date_section() {
+        paymentInformation.clickYearExpiryDate();
+    }
+
+    @And ("the next button on payment information page is clicked")
+    public void click_on_button_on_next_information_page() {
+        paymentInformation.clickNextButtonOnPaymentInformationPage();
+    }
+
     @Then ("the newsletter confirmation pop-up appears")
     public void theNewsletterConfirmationPopUpAppears() {
     driver.switchTo().alert().accept();
     }
 
-    @Then ("the page {string} opens")//change name
+    @Then ("the page {string} opens")
     public void theFundamentalsPageOpens(String string) {
         Assertions.assertEquals(string, driver.getTitle());
     }
 
+    @Then ("the 2nd page {string} opens")
+    public void theContactInformationPageOpens(String string) {
+        Assertions.assertEquals ("Contact Information", contactInformation.getContactInformationHeaderText());
+    }
+
+    @Then ("the 3d page of {string} opens")
+    public void theCourseOptionsPageOpens(String string) {
+        Assertions.assertEquals ("Course options", courseOptions.getCourseOptionsHeaderText());
+    }
+
     @Then ("the button scrolls down to {string} section")
-    public void theFundamentalsSectionAppears(String string) {
+    public void clickOnWhatYoullLearnButtonToScrollToFundamentalsSection(String string) {
         Assertions.assertEquals(string, mainPage.getFundamentalsText ());
     }
 
-    @Then ("the second page {string} opens")//change name
-    public void thePersonalInformationEnrollmentPageOpens(String string) {
-        Assertions.assertEquals (string, driver.getTitle());
+    @Then ("the 4th page {string} opens")
+    public void thePaymentInformationPageOpens(String string) {
+        Assertions.assertEquals ("Payment information", paymentInformation.getPaymentInformationHeader());
     }
 
-    @Then ("the third page {string} opens")
-    public void thePaymentInformationPageOpens(String string) {
-        Assertions.assertEquals (string, driver.getTitle());
-    }
+
+
 }
 
 

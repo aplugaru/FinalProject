@@ -13,12 +13,15 @@ public class CourseOptions {
     @FindBy (xpath = "/html/body/div/div/section/div/form/div[3]/button[2]")
     private WebElement clickOnNextButtonOnCourseOptions;
 
+    @FindBy (xpath = "/html/body/div/div/section/div/form/div[3]/h3")
+    private WebElement courseOptionsHeader;
+
 
     public CourseOptions(WebDriver driver) { PageFactory.initElements(driver, this);
     }
 
     public void clickButtonSoftwareTestingManualTesterCertificate() {
-        clickOnSoftwareTestingManualTesterCertificate.click ();
+        clickOnSoftwareTestingManualTesterCertificate.click();
     }
     public void clickNextOnCourseOptionsButton() {
         clickOnNextButtonOnCourseOptions.click();
@@ -27,5 +30,9 @@ public class CourseOptions {
     public void selectCourseOptions() {
         clickButtonSoftwareTestingManualTesterCertificate();
         clickNextOnCourseOptionsButton();
+    }
+
+    public String getCourseOptionsHeaderText() {
+        return courseOptionsHeader.getText();
     }
 }

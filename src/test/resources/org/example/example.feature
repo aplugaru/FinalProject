@@ -25,7 +25,7 @@ Feature: An example
   Scenario: Click on Enrollment Button
     Given I am on the main page
     When the Start Enrollment Button is clicked
-    Then the second page "Software Testing|Enrollment" opens
+    Then the page "Software Testing | Enrollment" opens
 
 
   Scenario: (Negative) Sign Up
@@ -42,6 +42,7 @@ Feature: An example
    * the password value of "abc" is inputted
    * the confirm password of "abc" is inputted
    * the next button on Sign Up page is clicked
+   Then the 2nd page "Contact information" opens
 
  Scenario: Contact Information
    Given I am on the contact information page
@@ -51,15 +52,23 @@ Feature: An example
    * the city value of "Pong" is inputted
    * the postal code value of "364780" is inputted
    * the next button on contact information page is clicked
+   Then the 3d page of "Course options" opens
 
 Scenario: Course Options
   Given I am on the course options page
   When the button for Software Testing-Manual tester certificate is clicked
   And the next button on Course Option page is clicked
-  Then the third page "Payment Information" opens
+  Then the 4th page "Payment information" opens
 
  Scenario: Payment Information
    Given I am on the payment information page
+   When the card holder name of "XXX JJJ" is inputted
+   And the card number of "978493783498" is inputted
+   * the cvc value of "3456" is inputted
+   * the month on expiry date section is clicked
+   * the year on expiry date section is clicked
+   * the next button on payment information page is clicked
+
 
 
 

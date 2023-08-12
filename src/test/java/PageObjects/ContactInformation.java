@@ -25,6 +25,9 @@ public class ContactInformation {
     @FindBy (xpath = "/html/body/div/div/section/div/form/div[2]/button[2]")
     private WebElement clickOnNextButtonOnContactInformationPage;
 
+    @FindBy (xpath = "/html/body/div/div/section/div/form/div[2]/h3")
+    private WebElement contactInformationHeader;
+
 
     public ContactInformation(WebDriver driver) {
         PageFactory.initElements (driver, this);
@@ -63,6 +66,10 @@ public class ContactInformation {
         inputValueInPostCodeFieldInInformationPage ("50098473");
         inputValueInCityFieldInContactInformationPage ("Shang");
         clickOnNextButtonOnContactInformationPage();
+    }
+
+    public String getContactInformationHeaderText() {
+        return contactInformationHeader.getText();
     }
 
 }

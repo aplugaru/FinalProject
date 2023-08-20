@@ -6,61 +6,25 @@ Feature: An example
     And the submit button is clicked
     Then the newsletter confirmation pop-up appears
 
-  Scenario: Valid email RO
+  Scenario: (Negative) Invalid email US
     Given I am on the main page
-    When the email value of "kljjlkdjf@jkhdj.com" is inputted
+    When the email value of "agsb" is inputted
     And the submit button is clicked
     Then the newsletter confirmation pop-up appears
 
-  Scenario: Click on Fundamentals Read More button
-    Given I am on the main page
-    When the learn the fundamentals read more button is clicked
-    Then the page "Fundamentals" opens
-
-  Scenario: Click on What You'll Learn Button
+  Scenario: (end to end) Click on What You'll Learn Button
     Given I am on the main page
     When the what you'll learn button is clicked
-    Then the button scrolls down to "Fundamentals Page section" section
+    And the button scrolls down to "Learn The Fundamentals" section
+    * the learn the fundamentals read more button is clicked
+    Then the page "Fundamentals" opens
 
   Scenario: Click on Enrollment Button
     Given I am on the main page
     When the Start Enrollment Button is clicked
     Then the page "Software Testing | Enrollment" opens
 
-
-  Scenario: (Negative) Sign Up
-    Given I am on the Sign Up page
-    When the first name value of "alex" is inputted
-    And the last name value of "man" is inputted
-    And the next button on Sign Up page is clicked
-
- Scenario: (Positive) Sign Up
-   Given I am on the Sign Up page
-   When the first name value of "Alex" is inputted
-   And the last name value of "man" is inputted
-   * the username value of "alex first" is inputted
-   * the password value of "abc" is inputted
-   * the confirm password of "abc" is inputted
-   * the next button on Sign Up page is clicked
-   Then the 2nd page "Contact information" opens
-
- Scenario: Contact Information
-   Given I am on the contact information page
-   When the email value on contact information page of "alex@gild.com" is inputted
-   And the phone number of "08563839470" is inputted
-   * the country value of "China" is inputted
-   * the city value of "Pong" is inputted
-   * the postal code value of "364780" is inputted
-   * the next button on contact information page is clicked
-   Then the 3d page of "Course options" opens
-
-Scenario: Course Options
-  Given I am on the course options page
-  When the button for Software Testing-Manual tester certificate is clicked
-  And the next button on Course Option page is clicked
-  Then the 4th page "Payment information" opens
-
- Scenario: Payment Information
+ Scenario: (End to End) Payment Information Page
    Given I am on the payment information page
    When the card holder name of "XXX JJJ" is inputted
    And the card number of "978493783498" is inputted
@@ -68,6 +32,27 @@ Scenario: Course Options
    * the month on expiry date section is clicked
    * the year on expiry date section is clicked
    * the next button on payment information page is clicked
+   Then the 5th page "Success!" opens
+   And the return to homepage button is clicked
+   Then the page "Software Testing Course" opens
+
+
+  Scenario: (Negative) Payment Information Page
+    Given I am on the payment information page
+    When the card holder name of "XXX JJJ" is inputted
+    And the card number of "978493783498" is inputted
+    * the month on expiry date section is clicked
+    * the year on expiry date section is clicked
+    * the next button on payment information page is clicked
+    Then the 4th page "Payment information" opens
+
+   Scenario: Questions sector
+     Given I am on the main page
+     When the questions button is clicked
+     And the where is your institution located button is click
+     Then the questions information slides down
+     And the what do I need to know beforehand button is clicked
+
 
 
 

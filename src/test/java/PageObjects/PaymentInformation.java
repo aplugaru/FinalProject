@@ -33,6 +33,7 @@ public class PaymentInformation {
 
 
 
+
     public PaymentInformation (WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -63,5 +64,14 @@ public class PaymentInformation {
 
     public void clickNextButtonOnPaymentInformationPage() {
         clickOnNextButtonOnPaymentInformationPage.click();
+    }
+
+    public void inputPaymentInformationDetails() {
+        inputValueInCardHolderName("john doe");
+        inputValueInCardNumberField("3638576");
+        inputValueInCvcField("354");
+        clickMonthOnExpiryDate();
+        clickYearExpiryDate();
+        clickNextButtonOnPaymentInformationPage();
     }
 }

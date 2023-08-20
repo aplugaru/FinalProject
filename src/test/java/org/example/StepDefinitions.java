@@ -17,6 +17,7 @@ public class StepDefinitions {
     ContactInformation contactInformation;
     CourseOptions courseOptions;
     PaymentInformation paymentInformation;
+    SuccessPage successPage;
 
 
     public StepDefinitions() {
@@ -28,11 +29,12 @@ public class StepDefinitions {
         contactInformation = new ContactInformation ( driver );
         courseOptions = new CourseOptions (driver);
         paymentInformation = new PaymentInformation(driver);
+        successPage = new SuccessPage(driver);
     }
 
     @Given("I am on the main page")
     public void i_am_on_the_main_page() {
-        driver.get ( "file:///C:/Users/andre/Desktop/AZIMUT/Testing-Env-master/index.html" );
+        driver.get ( "file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15012.33173/Testing-Env-master/index.html" );
     }
 
     @Given("I am on the Sign Up page")
@@ -54,11 +56,20 @@ public class StepDefinitions {
 
     @Given ("I am on the payment information page")
     public void i_am_on_the_payment_information_page() {
-        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa18704.30030/Testing-Env-master/routes/enrollment.html");
+        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15012.33173/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation();
         contactInformation.fillInContactInformation();
         courseOptions.selectCourseOptions();
     }
+
+    @Given ("I am on the success page")
+    public void i_am_on_the_success_page() {
+        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15012.33173/Testing-Env-master/routes/enrollment.html");
+        signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation();
+        contactInformation.fillInContactInformation();
+        courseOptions.selectCourseOptions();
+        paymentInformation.inputPaymentInformationDetails();
+       }
 
 
     @When("the email value of {string} is inputted")
@@ -69,12 +80,6 @@ public class StepDefinitions {
     @When("the submit button is clicked")
     public void click_submit_button() {
         mainPage.clickOnSubmitButton ();
-    }
-
-    @When("the learn the fundamentals read more button is clicked")
-    public void click_learn_the_fundamentals_read_more_button() {
-        Utils.scrollToElement ( driver, mainPage.getElementVirtualHeader());
-        mainPage.clickOnFundamentalsReadMoreButton();
     }
 
     @When("the what you'll learn button is clicked")
@@ -107,6 +112,20 @@ public class StepDefinitions {
         paymentInformation.inputValueInCardHolderName (string);
     }
 
+
+
+    @When("the questions button is clicked")
+    public void click_on_questions_button() {mainPage.clickOnQuestionsButton();}
+
+    @And ("the button scrolls down to {string} section")
+    public void clickOnWhatYoullLearnButton(String string) {
+        Assertions.assertEquals(string, mainPage.getFundamentalsText ());
+    }
+    @And ("the learn the fundamentals read more button is clicked")
+    public void click_learn_the_fundamentals_read_more_button() {
+        Utils.scrollToElement ( driver, mainPage.getElementVirtualHeader());
+        mainPage.clickOnFundamentalsReadMoreButton();
+    }
     @And("the last name value of {string} is inputted")
     public void input_last_name_to_field(String string) {
         signUpPageForTheSoftwareTestingCoursePage.inputValueInLastNameField(string);
@@ -188,6 +207,23 @@ public class StepDefinitions {
         paymentInformation.clickNextButtonOnPaymentInformationPage();
     }
 
+    @And ("the return to homepage button is clicked")
+    public void click_on_return_to_homepage_button(){
+        successPage.clickReturnToHomepageButton();
+    }
+
+    @And ("the where is your institution located button is click")
+    public void click_on_where_is_your_institution_located(){
+        mainPage.clickOnWhereIsInstitutionLocated();
+    }
+
+    @And ("the what do I need to know beforehand button is clicked")
+    public void click_on_what_do_I_need_to_beforehand() {
+        mainPage.clickOnWhatDoINeedToKnowBeforeHand();
+    }
+
+
+
     @Then ("the newsletter confirmation pop-up appears")
     public void theNewsletterConfirmationPopUpAppears() {
     driver.switchTo().alert().accept();
@@ -208,17 +244,22 @@ public class StepDefinitions {
         Assertions.assertEquals ("Course options", courseOptions.getCourseOptionsHeaderText());
     }
 
-    @Then ("the button scrolls down to {string} section")
-    public void clickOnWhatYoullLearnButtonToScrollToFundamentalsSection(String string) {
-        Assertions.assertEquals(string, mainPage.getFundamentalsText ());
-    }
+
 
     @Then ("the 4th page {string} opens")
     public void thePaymentInformationPageOpens(String string) {
         Assertions.assertEquals ("Payment information", paymentInformation.getPaymentInformationHeader());
     }
 
+    @Then("the 5th page {string} opens")
+    public void theSuccessPageOpens(String string) {
+        Assertions.assertEquals("Success!", successPage.getSuccessPageHeaderText());
+    }
 
+    @Then ("the questions information slides down")
+    public void questionsInformation() {
+        Assertions.assertTrue (driver.getPageSource ().contains ( "show" ));
+    }
 
 }
 

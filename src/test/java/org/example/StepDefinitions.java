@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.helpers.Util;
 
 public class StepDefinitions {
 
-    private WebDriver driver;
+    private final WebDriver driver;
     ChromeOptions options = new ChromeOptions ();
     MainPage mainPage;
     SignUpForTheSoftwareTestingCoursePage signUpPageForTheSoftwareTestingCoursePage;
@@ -34,29 +35,29 @@ public class StepDefinitions {
 
     @Given("I am on the main page")
     public void i_am_on_the_main_page() {
-        driver.get ( "file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15012.33173/Testing-Env-master/index.html" );
+        driver.get ( "file:///C:/AZIMUT/AZIMUT/Testing-Env-master/index.html" );
     }
 
     @Given("I am on the Sign Up page")
     public void i_am_on_the_sign_up_page() {
-        driver.get ( "file:///C:/Users/andre/Desktop/AZIMUT/Testing-Env-master/routes/enrollment.html");
+        driver.get ( "file:///C:/AZIMUT/AZIMUT/Testing-Env-master/routes/enrollment.html");
     }
 
     @Given("I am on the contact information page")
     public void i_am_on_the_contact_information_page() {
-        driver.get ( "file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa20640.18222/Testing-Env-master/routes/enrollment.html");
+        driver.get ( "file:///C:/AZIMUT/AZIMUT/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation();
     }
     @Given("I am on the course options page")
     public void i_am_on_the_course_options_page() {
-        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa20640.18222/Testing-Env-master/routes/enrollment.html");
+        driver.get ("file:///C:/AZIMUT/AZIMUT/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation ();
         contactInformation.fillInContactInformation();
     }
 
     @Given ("I am on the payment information page")
     public void i_am_on_the_payment_information_page() {
-        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15012.33173/Testing-Env-master/routes/enrollment.html");
+        driver.get ("file:///C:/AZIMUT/AZIMUT/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation();
         contactInformation.fillInContactInformation();
         courseOptions.selectCourseOptions();
@@ -64,13 +65,12 @@ public class StepDefinitions {
 
     @Given ("I am on the success page")
     public void i_am_on_the_success_page() {
-        driver.get ("file:///C:/Users/andre/AppData/Local/Temp/Rar$EXa15012.33173/Testing-Env-master/routes/enrollment.html");
+        driver.get ("file:///C:/AZIMUT/AZIMUT/Testing-Env-master/routes/enrollment.html");
         signUpPageForTheSoftwareTestingCoursePage.fillInPersonalInformation();
         contactInformation.fillInContactInformation();
         courseOptions.selectCourseOptions();
         paymentInformation.inputPaymentInformationDetails();
        }
-
 
     @When("the email value of {string} is inputted")
     public void input_email_to_field(String string) {
@@ -111,11 +111,16 @@ public class StepDefinitions {
     public void input_card_holder_name_to_field(String string) {
         paymentInformation.inputValueInCardHolderName (string);
     }
-
-
-
     @When("the questions button is clicked")
     public void click_on_questions_button() {mainPage.clickOnQuestionsButton();}
+
+    @When("the read more button on Virtual Section is clicked")
+    public void click_on_read_more_on_virtual_section() {
+        Utils.scrollToElement(driver, mainPage.getElementVirtualHeader());
+        mainPage.clickOnVirtualButtonReadMoreButton();}
+
+    @When("the instructors button is clicked")
+    public void click_on_instructors_button(){mainPage.clickOnInstructorsButton();}
 
     @And ("the button scrolls down to {string} section")
     public void clickOnWhatYoullLearnButton(String string) {
@@ -212,8 +217,9 @@ public class StepDefinitions {
         successPage.clickReturnToHomepageButton();
     }
 
-    @And ("the where is your institution located button is click")
+    @And ("the where is your institution located button is clicked")
     public void click_on_where_is_your_institution_located(){
+        Utils.scrollToElement(driver, mainPage.getElementFrequentlyAskedQuestions());
         mainPage.clickOnWhereIsInstitutionLocated();
     }
 
@@ -222,15 +228,28 @@ public class StepDefinitions {
         mainPage.clickOnWhatDoINeedToKnowBeforeHand();
     }
 
+    @And("the button scrolls down to our instructors section")
+    public void scrolls_down_to_our_instructors_section(){
+        Utils.scrollToElement (driver, mainPage.getOurInstructorsHeader());
+    }
 
+    @And("the Instagram button is clicked")
+    public void click_on_instagram_button(){
+        mainPage.clickOnInstagramButton();
+    }
 
     @Then ("the newsletter confirmation pop-up appears")
     public void theNewsletterConfirmationPopUpAppears() {
     driver.switchTo().alert().accept();
     }
 
+    @Then ("the newsletter field becomes red for invalid email address")
+    public void theNewsletterFieldBecomesRed(){
+        Assertions.assertTrue(driver.getPageSource().contains("form-control error"));
+    }
+
     @Then ("the page {string} opens")
-    public void theFundamentalsPageOpens(String string) {
+    public void thePageOpens(String string) {
         Assertions.assertEquals(string, driver.getTitle());
     }
 
@@ -243,7 +262,6 @@ public class StepDefinitions {
     public void theCourseOptionsPageOpens(String string) {
         Assertions.assertEquals ("Course options", courseOptions.getCourseOptionsHeaderText());
     }
-
 
 
     @Then ("the 4th page {string} opens")
@@ -260,6 +278,10 @@ public class StepDefinitions {
     public void questionsInformation() {
         Assertions.assertTrue (driver.getPageSource ().contains ( "show" ));
     }
+
+    @Then("the 1st question section collapses")
+    public void questionCollapse(){
+        Assertions.assertTrue(driver.getPageSource().contains("accordion-button collapsed"));}
 
 }
 

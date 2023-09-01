@@ -21,7 +21,7 @@ public class MainPage {
     @FindBy (xpath = "/html/body/section[1]/div/div/div/a")
     private WebElement elementStartTheEnrollmentButton;
 
-    @FindBy (xpath = "/html/body/section[3]/div/div/div[1]/div/div/a")
+    @FindBy (xpath = "/html/body/section[3]/div/div/div[1]/div/div/h3")
     private WebElement elementVirtualHeader;
 
     @FindBy(xpath = "//*[@id=\"learn-fundamentals\"]/div/div/div[2]/h2")
@@ -39,6 +39,20 @@ public class MainPage {
     @FindBy(xpath = "//*[@id=\"questions\"]/div[3]/h3/button")
     private WebElement elementWhatDoINeedToKnowBeforehand;
 
+    @FindBy (xpath = "/html/body/section[3]/div/div/div[1]/div/div/a")
+    private WebElement elementVirtualSectionReadMoreButton;
+
+    @FindBy(xpath = "//*[@id=\"navmenu\"]/ul/li[3]/a")
+    private WebElement elementInstructorsButton;
+
+    @FindBy(xpath = "//*[@id=\"instructors\"]/div/h2")
+    private WebElement elementOurInstructorsHeader;
+
+    @FindBy(xpath = "//*[@id=\"instructors\"]/div/div/div[1]/div/div/a[4]/i")
+    private WebElement elementTwitterButton;
+
+    @FindBy(xpath = "//*[@id=\"questions\"]/div/h2")
+    private WebElement elementFrequentlyAskedQuestions;
 
 
     public MainPage(WebDriver driver) {
@@ -76,12 +90,26 @@ public class MainPage {
         return elementVirtualHeader;
     }
 
-
-
     public String getFundamentalsText() {
          return fundamentalsText.getText ();
     }
+    public void clickOnVirtualButtonReadMoreButton() {elementVirtualSectionReadMoreButton.click();}
+    public void clickOnInstructorsButton(){elementInstructorsButton.click();}
+
+    public WebElement getOurInstructorsHeader(){
+        return elementOurInstructorsHeader;
+    }
+
+    public void clickOnInstagramButton() {
+        elementTwitterButton.click();
+    }
+
+    public WebElement getElementFrequentlyAskedQuestions() {
+        return elementFrequentlyAskedQuestions;
+    }
 
 }
+
+
 
 

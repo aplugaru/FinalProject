@@ -1,9 +1,13 @@
 package org.example;
 
 import PageObjects.*;
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -228,13 +232,11 @@ public class StepDefinitions {
         mainPage.clickOnWhatDoINeedToKnowBeforeHand();
     }
 
-    @And("the button scrolls down to our instructors section")
-    public void scrolls_down_to_our_instructors_section(){
-        Utils.scrollToElement (driver, mainPage.getOurInstructorsHeader());
-    }
+
 
     @And("the Instagram button is clicked")
     public void click_on_instagram_button(){
+        Utils.scrollToElement(driver, mainPage.getContactInfoHeader());
         mainPage.clickOnInstagramButton();
     }
 
@@ -250,6 +252,7 @@ public class StepDefinitions {
 
     @Then ("the page {string} opens")
     public void thePageOpens(String string) {
+
         Assertions.assertEquals(string, driver.getTitle());
     }
 
@@ -283,6 +286,19 @@ public class StepDefinitions {
     public void questionCollapse(){
         Assertions.assertTrue(driver.getPageSource().contains("accordion-button collapsed"));}
 
+    @Then ("the button scrolls down to our instructors section")
+    public void scrolls_down_to_our_instructors_section(){
+        Assertions.assertEquals ("Our Instructors", mainPage.getOurInstructorsHeader());
+    }
+
+    @After
+    public void cleanUp(Scenario scenario) {
+        if (scenario.isFailed()) {
+            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/jpg", "");
+        }
+        driver.quit();
+    }
 }
 
 

@@ -56,7 +56,6 @@ Feature: An example
      When the questions button is clicked
      And the where is your institution located button is clicked
      Then the questions information slides down
-     And the what do I need to know beforehand button is clicked
 
    Scenario: TC9 Collapse on Questions sector
      Given I am on the main page
@@ -69,8 +68,11 @@ Feature: An example
    Scenario: TC10 Instructors Button
      Given I am on the main page
      When the instructors button is clicked
-     And the button scrolls down to our instructors section
-     * the Instagram button is clicked
+     Then the button scrolls down to our instructors section
+
+   Scenario: TC11 Instagram button
+     Given I am on the main page
+     When the Instagram button is clicked
      Then the page "Instagram" opens
 
 

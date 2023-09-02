@@ -54,6 +54,9 @@ public class MainPage {
     @FindBy(xpath = "//*[@id=\"questions\"]/div/h2")
     private WebElement elementFrequentlyAskedQuestions;
 
+    @FindBy(xpath = "/html/body/section[8]/div/div/div[1]/h2")
+    private WebElement elementContactInfoHeader;
+
 
     public MainPage(WebDriver driver) {
         PageFactory.initElements ( driver, this );
@@ -96,8 +99,8 @@ public class MainPage {
     public void clickOnVirtualButtonReadMoreButton() {elementVirtualSectionReadMoreButton.click();}
     public void clickOnInstructorsButton(){elementInstructorsButton.click();}
 
-    public WebElement getOurInstructorsHeader(){
-        return elementOurInstructorsHeader;
+    public String getOurInstructorsHeader(){
+        return elementOurInstructorsHeader.getText();
     }
 
     public void clickOnInstagramButton() {
@@ -106,6 +109,10 @@ public class MainPage {
 
     public WebElement getElementFrequentlyAskedQuestions() {
         return elementFrequentlyAskedQuestions;
+    }
+
+    public WebElement getContactInfoHeader(){
+        return elementContactInfoHeader;
     }
 
 }
